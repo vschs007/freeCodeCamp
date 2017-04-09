@@ -1,7 +1,6 @@
 // enable debug for gulp
 /* eslint-disable prefer-object-spread/prefer-object-spread */
 process.env.DEBUG = process.env.DEBUG || 'fcc:*';
-
 require('babel-core/register');
 const Rx = require('rx'),
   gulp = require('gulp'),
@@ -10,7 +9,6 @@ const Rx = require('rx'),
   yargs = require('yargs'),
   sortKeys = require('sort-keys'),
   del = require('del'),
-
   // utils
   plumber = require('gulp-plumber'),
   notify = require('gulp-notify'),
@@ -22,36 +20,28 @@ const Rx = require('rx'),
   babel = require('gulp-babel'),
   sourcemaps = require('gulp-sourcemaps'),
   gulpif = require('gulp-if'),
-
   // react app
   webpack = require('webpack'),
   webpackStream = require('webpack-stream'),
   webpackDevMiddleware = require('webpack-dev-middleware'),
   webpackHotMiddleware = require('webpack-hot-middleware'),
   webpackConfig = require('./webpack.config.js'),
-
   // server process
   nodemon = require('gulp-nodemon'),
   browserSync = require('browser-sync'),
-
   // css
   less = require('gulp-less'),
-
   // rev
   rev = require('gulp-rev'),
   revDel = require('rev-del'),
-
   // lint
   jsonlint = require('gulp-jsonlint'),
   eslint = require('gulp-eslint'),
-
   // unit-tests
   tape = require('gulp-tape'),
   tapSpec = require('tap-spec');
-
 Rx.config.longStackSupport = true;
 const sync = browserSync.create('fcc-sync-server');
-
 function resolve(filepath, thisString, withThisString) {
   const newPath = require.resolve(filepath);
   if (thisString && withThisString) {
@@ -443,16 +433,4 @@ gulp.task('watch', watchDependents, function() {
   gulp.watch(paths.js, ['js']);
 });
 
-gulp.task('default', [
-  'less',
-  'serve',
-  'watch',
-  'dev-server'
-]);
-
-gulp.task('test', function() {
-  return gulp.src('test/**/*.js')
-    .pipe(tape({
-      reporter: tapSpec()
-    }));
-});
+gulp.task('defa
